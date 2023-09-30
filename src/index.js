@@ -26,9 +26,7 @@ class Bridge {
   }
 
   cross(data, prop = 'textContent') {
-    this.destinations.forEach((dest) => {
-      const el = dest.el;
-      const name = dest.name;
+    this.destinations.forEach(({ el, name }) => {
       const item = data[name];
 
       if (item === undefined || this.prevData[name] === item) {
