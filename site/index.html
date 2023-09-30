@@ -1,0 +1,135 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crossings</title>
+    <script src="/src/index.js"></script>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+    <style>
+      [data-crossing] {
+        transition: color 0.3s;
+      }
+
+      .fade:not([data-crossing='counter']) {
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Crossings</h1>
+      <p>
+        A <span data-crossing="adjective">tiny</span> library focused on easily
+        connecting JS to HTML.
+      </p>
+
+      <nav>
+        <a href="/">Home</a> &bull;
+        <a href="https://github.com/mystpi/crossings">GitHub</a> &bull;
+        <a href="https://github.com/mystpi/crossings/issues">Issues</a> &bull;
+        <a href="https://github.com/mystpi/crossings/releases">Download</a>
+      </nav>
+    </header>
+
+    <p>
+      No build tools, configuration, or complex frameworks. It's just pure
+      JavaScript. Including it is very
+      <span data-crossing="adjective">easy</span>, you can either use a CDN or
+      download it directly.
+      <br />
+      <a href="https://github.com/mystpi/crossings/releases">Download</a> /
+      <a href="https://cdn.jsdelivr.net/npm/crossings@0.1.0">CDN</a>
+    </p>
+
+    <h2>How it works</h2>
+
+    <p>
+      Start by putting <code>data-crossing</code> attributes on the elements you
+      want to have data passed ("crossed") to.
+    </p>
+
+    <pre>
+&lt;body&gt;
+  &lt;h1&gt;Hi, I am &lt;span <mark>data-crossing=&quot;title&quot;</mark>&gt;cool&lt;/span&gt;!&lt;/h1&gt;
+&lt;/body&gt;</pre
+    >
+
+    <p>Then initialize a <code>Bridge</code>.</p>
+
+    <pre>
+// Pass a CSS selector or an HTML element
+const bridge = new Bridge('body');</pre
+    >
+
+    <p>Finally, get crossing!</p>
+
+    <pre>
+bridge.cross({
+  title: 'MystPi'
+});
+
+// or
+
+bridge.title = 'MystPi';</pre
+    >
+
+    <h2>Interactive Demo</h2>
+
+    <p>
+      <label>
+        Cross the bridge:
+        <span data-crossing="button">
+          <button onclick="cross()">Cross</button>
+        </span>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Counter:
+        <span data-crossing="counter">
+          <button onclick="counter()">Start</button>
+        </span>
+      </label>
+    </p>
+
+    <script>
+      // Initialize a Bridge to the body of the document.
+      const bridge = new Bridge('body');
+
+      function cross() {
+        // Send data over the bridge by using the `cross` method. This is the
+        // first way of crossing data.
+        bridge.cross({
+          adjective: 'simple',
+          button: 'crossed!',
+        });
+
+        // A fade animation for extra effect
+        bridge.destinations.forEach(({ el }) => {
+          el.classList.add('fade');
+
+          setTimeout(() => {
+            el.classList.remove('fade');
+          }, 500);
+        });
+      }
+
+      function counter() {
+        let count = 0;
+
+        // This is the second way of crossing data. Simply set a property on
+        // the bridge and it will be automatically crossed over!
+        bridge.counter = count;
+
+        const update = () => (bridge.counter = ++count);
+
+        setInterval(update, 1000);
+      }
+    </script>
+  </body>
+</html>

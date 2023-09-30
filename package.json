@@ -1,0 +1,32 @@
+{
+  "name": "crossings",
+  "version": "0.1.0",
+  "description": "A tiny library focused on easily connecting JS to HTML.",
+  "main": "src/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mystpi/crossings.git"
+  },
+  "keywords": [
+    "html",
+    "js",
+    "frontend",
+    "data",
+    "connect",
+    "simple",
+    "small",
+    "tiny"
+  ],
+  "author": "MystPi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mystpi/crossings/issues"
+  },
+  "homepage": "https://github.com/mystpi/crossings#readme"
+}
